@@ -16,5 +16,10 @@ namespace KMwareWeb01.Pages
         {
 
         }
+
+        public IActionResult OnPostRedirectToDashboard()
+        {
+            return RedirectToPage("./Dashboard");
+        }
     }
 }

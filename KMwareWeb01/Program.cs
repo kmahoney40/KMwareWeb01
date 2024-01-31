@@ -1,4 +1,11 @@
+using Microsoft.Net.Http.Headers;
+using Serilog.Events;
+
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
+//var minLogLevel = int.Parse(configuration["MinLogLevel"] ?? "3");
+
+LogEventLevel minLogLevel = (LogEventLevel)int.Parse(configuration["MinLogLevel"] ?? "3");
 
 // Add services to the container.
 builder.Services.AddRazorPages();
