@@ -14,7 +14,7 @@ namespace KMwareWeb01.Pages
 
         public void OnGet()
         {
-
+            _logger.LogInformation("ENTERED Index OnGet");
         }
 
         public IActionResult OnPostRedirectToDashboard()
