@@ -1,13 +1,75 @@
 ﻿@page
-@model KMwareWeb01.Pages.DashboardModel
+@model DashboardModel
 @{
 	ViewData["Title"] = "Dashboard";
 }
 
 <h1>Dashboard</h1>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.0/signalr.min.js"></script>
+<script src="~/chat.js"></script>
+<script>
+    const connection = new signalR.HubConnectionBuilder().withUrl("/Hubs/UpdateHub").build();
+
+    connection.on("ReceiveMessage", function (message) {
+        // Logic to handle the received message
+        console.log(message);
+        var elm = message.split('|');
+        document.getElementById('messageContainer').innerText = elm[0];
+        document.getElementById('rainDelayContainer').innerText = elm[1];
+        document.getElementById('s1').innerText = elm[2];
+        document.getElementById('s2').innerText = elm[3];
+        document.getElementById('s3').innerText = elm[4];
+        document.getElementById('s4').innerText = elm[5];
+        document.getElementById('s5').innerText = elm[6];
+        document.getElementById('s6').innerText = elm[7];
+        document.getElementById('s7').innerText = elm[8];
+    });
+
+    connection.start().catch(function (err) {
+        return console.error(err.toString());
+    });
+</script>
+
+
 <div class="text-cetner">
 	<form method="post">
 		<button type="submit" asp-page-handler="RedirectToIndex">Redirect to Index</button>
 	</form>
+</div>
+<div class="text-center">
+    <h1 class="display-4">KMware</h1>
+@*     @Model.FirstName
+ *@
+    @* @Html.TextBoxFor(m => m.RunTimes[0].V0) *@
+
+    <form method="post">
+        @* <input asp-for="FirstName" type="text" class="form-control" /> *@
+        <div>
+            @for (int rt = 0; rt < Model.RunTimes.Count(); rt++)
+			{
+                <input type="number" asp-for="RunTimes[@rt].V0" name="RunTimes[@rt][V0]" value="@Model.RunTimes[@rt].V0" min="0" max="99" style="width: 5em">
+                <input type="number" asp-for="RunTimes[@rt].V1" name="RunTimes[@rt][V1]" value="@Model.RunTimes[@rt].V1" min="0" max="99" style="width: 5em">
+                <input type="number" asp-for="RunTimes[@rt].V2" name="RunTimes[@rt][V2]" value="@Model.RunTimes[@rt].V2" min="0" max="99" style="width: 5em">
+                <input type="number" asp-for="RunTimes[@rt].V3" name="RunTimes[@rt][V3]" value="@Model.RunTimes[@rt].V3" min="0" max="99" style="width: 5em">
+                <input type="number" asp-for="RunTimes[@rt].V4" name="RunTimes[@rt][V4]" value="@Model.RunTimes[@rt].V4" min="0" max="99" style="width: 5em">
+                <input type="number" asp-for="RunTimes[@rt].v5" name="RunTimes[@rt][V5]" value="@Model.RunTimes[@rt].V5" min="0" max="99" style="width: 5em">
+                <input type="number" asp-for="RunTimes[@rt].v6" name="RunTimes[@rt][V6]" value="@Model.RunTimes[@rt].V6" min="0" max="99" style="width: 5em">
+                <input type="number" asp-for="RunTimes[@rt].v7" name="RunTimes[@rt][V7]" value="@Model.RunTimes[@rt].V7" min="0" max="99" style="width: 5em">
+                <br />
+			}
+        </div>
+        <br />
+        <button type="submit" class="btn btn-default">Click to post</button>
+
+        <div id="messageContainer">Waiting for messages...</div>
+        <div id="rainDelayContainer">Waiting...</div>
+        <div id="s1">s1</div>
+        <div id="s2">s2</div>
+        <div id="s3">s3</div>
+        <div id="s4">s4</div>
+        <div id="s5">s5</div>
+        <div id="s6">s6</div>
+        <div id="s7">s7</div>
+    </form>
 </div>

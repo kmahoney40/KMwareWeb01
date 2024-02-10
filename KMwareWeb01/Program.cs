@@ -1,3 +1,6 @@
+using KMwareWeb01.DAO;
+using KMwareWeb01.Hubs;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using Serilog;
 using Serilog.Events;
@@ -21,8 +24,13 @@ builder.Host.UseSerilog();
 
 Log.Information("Program Started");
 
+builder.Services.AddDbContext<AuthDbContext>(options =>
+    options.UseSqlite(configuration.GetConnectionString("DefaultConnection"))
+    .LogTo(Console.WriteLine));
+
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -42,5 +50,9 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapControllers();
+app.MapHub<UpdateHub>("/Hubs/UpdateHub");
+
+
 
 app.Run();
