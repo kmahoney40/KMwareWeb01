@@ -44,7 +44,6 @@
     @* @Html.TextBoxFor(m => m.RunTimes[0].V0) *@
 
     <form method="post">
-        @* <input asp-for="FirstName" type="text" class="form-control" /> *@
         <div>
             @for (int rt = 0; rt < Model.RunTimes.Count(); rt++)
 			{
@@ -60,16 +59,23 @@
 			}
         </div>
         <br />
-        <button type="submit" class="btn btn-default">Click to post</button>
-
-        <div id="messageContainer">Waiting for messages...</div>
-        <div id="rainDelayContainer">Waiting...</div>
-        <div id="s1">s1</div>
-        <div id="s2">s2</div>
-        <div id="s3">s3</div>
-        <div id="s4">s4</div>
-        <div id="s5">s5</div>
-        <div id="s6">s6</div>
-        <div id="s7">s7</div>
+        <button type="submit" class="btn btn-default" asp-page-handler="Update">Click to post</button>
     </form>
+
+    <form method="post">
+        <div>
+            <div>@DashboardModel.FromSync</div>
+        </div>
+        <button type="submit" class="btn btn-default" asp-page-handler="SyncFromController">Sync From Controller</button>
+    </form>
+
+    <div id="messageContainer">Waiting for messages...</div>
+    <div id="rainDelayContainer">Waiting...</div>
+    <div id="s1">s1</div>
+    <div id="s2">s2</div>
+    <div id="s3">s3</div>
+    <div id="s4">s4</div>
+    <div id="s5">s5</div>
+    <div id="s6">s6</div>
+    <div id="s7">s7</div>
 </div>
