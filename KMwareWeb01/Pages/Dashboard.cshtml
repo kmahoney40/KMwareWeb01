@@ -24,6 +24,9 @@
         document.getElementById('s5').innerText = elm[6];
         document.getElementById('s6').innerText = elm[7];
         document.getElementById('s7').innerText = elm[8];
+        var hiddenInput = document.getElementById("msg");
+        hiddenInput.innerText = message;
+        hiddenInput.value = message;
     });
 
     connection.start().catch(function (err) {
@@ -47,7 +50,6 @@
         <div>
             @for (int rt = 0; rt < Model.RunTimes.Count(); rt++)
 			{
-                <input type="number" asp-for="RunTimes[@rt].V0" name="RunTimes[@rt][V0]" value="@Model.RunTimes[@rt].V0" min="0" max="99" style="width: 5em">
                 <input type="number" asp-for="RunTimes[@rt].V1" name="RunTimes[@rt][V1]" value="@Model.RunTimes[@rt].V1" min="0" max="99" style="width: 5em">
                 <input type="number" asp-for="RunTimes[@rt].V2" name="RunTimes[@rt][V2]" value="@Model.RunTimes[@rt].V2" min="0" max="99" style="width: 5em">
                 <input type="number" asp-for="RunTimes[@rt].V3" name="RunTimes[@rt][V3]" value="@Model.RunTimes[@rt].V3" min="0" max="99" style="width: 5em">
@@ -66,16 +68,17 @@
         <div>
             <div>@DashboardModel.FromSync</div>
         </div>
+        <div id="messageContainer">Waiting for messages...</div>
+        <div id="rainDelayContainer">Waiting...</div>
+        <div id="s1">s1</div>
+        <div id="s2">s2</div>
+        <div id="s3">s3</div>
+        <div id="s4">s4</div>
+        <div id="s5">s5</div>
+        <div id="s6">s6</div>
+        <div id="s7">s7</div>
+
+        <input type="hidden" id="msg" name="Message" />
         <button type="submit" class="btn btn-default" asp-page-handler="SyncFromController">Sync From Controller</button>
     </form>
-
-    <div id="messageContainer">Waiting for messages...</div>
-    <div id="rainDelayContainer">Waiting...</div>
-    <div id="s1">s1</div>
-    <div id="s2">s2</div>
-    <div id="s3">s3</div>
-    <div id="s4">s4</div>
-    <div id="s5">s5</div>
-    <div id="s6">s6</div>
-    <div id="s7">s7</div>
 </div>
