@@ -62,7 +62,7 @@ namespace KMwareWeb01.Controllers
 
                 _logger.LogInformation($"UpdateController.Update RunTimes:[ {JsonSerializer.Serialize(update.RunTimes)}]");
 
-                updates.Add(new DAO.Models.Updates
+              updates.Add(new DAO.Models.Updates
                 {
                     IsRainDelay = update.IsRainDelay,
                     RunTimesJson = JsonSerializer.Serialize(update.RunTimes),
