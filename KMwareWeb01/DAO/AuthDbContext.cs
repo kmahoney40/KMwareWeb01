@@ -7,7 +7,7 @@ namespace KMwareWeb01.DAO
     {
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Updates> Updates { get; set; }
-        public DbSet<RunTimes> RunTimes { get; set; }
+        public DbSet<RunTime> RunTimes { get; set; }
 
 
         public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
@@ -47,7 +47,7 @@ namespace KMwareWeb01.DAO
 
             });
 
-            modelBuilder.Entity<RunTimes>(entity =>
+            modelBuilder.Entity<RunTime>(entity =>
             {
                 entity.HasKey(e => e.Id);
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
@@ -60,19 +60,19 @@ namespace KMwareWeb01.DAO
                 entity.Property(e => e.V6);
                 entity.Property(e => e.V7);
                 entity.HasData(
-                    new RunTimes
+                    new RunTime
                         { Id = 1, V0 = 0, V1 = 0, V2 = 0, V3 = 0, V4 = 0, V5 = 0, V6 = 0, V7 = 0 },
-                    new RunTimes
+                    new RunTime
                         { Id = 2, V0 = 0, V1 = 0, V2 = 0, V3 = 0, V4 = 0, V5 = 0, V6 = 0, V7 = 0 },
-                    new RunTimes
+                    new RunTime
                         { Id = 3, V0 = 0, V1 = 0, V2 = 0, V3 = 0, V4 = 0, V5 = 0, V6 = 0, V7 = 0 },
-                    new RunTimes
+                    new RunTime
                         { Id = 4, V0 = 0, V1 = 0, V2 = 0, V3 = 0, V4 = 0, V5 = 0, V6 = 0, V7 = 0 },
-                    new RunTimes
+                    new RunTime
                         { Id = 5, V0 = 0, V1 = 0, V2 = 0, V3 = 0, V4 = 0, V5 = 0, V6 = 0, V7 = 0 },
-                    new RunTimes
+                    new RunTime
                         { Id = 6, V0 = 0, V1 = 0, V2 = 0, V3 = 0, V4 = 0, V5 = 0, V6 = 0, V7 = 0 },
-                        new RunTimes
+                        new RunTime
                         { Id = 7, V0 = 0, V1 = 0, V2 = 0, V3 = 0, V4 = 0, V5 = 0, V6 = 0, V7 = 0 });
             });
 

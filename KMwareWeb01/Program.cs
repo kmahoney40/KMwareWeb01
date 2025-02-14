@@ -1,5 +1,6 @@
 using KMwareWeb01.DAO;
 using KMwareWeb01.Hubs;
+using KMwareWeb01.Pages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Net.Http.Headers;
 using Serilog;
@@ -27,6 +28,8 @@ Log.Information("Program Started");
 builder.Services.AddDbContext<AuthDbContext>(options =>
     options.UseSqlite(configuration.GetConnectionString("DefaultConnection"))
     .LogTo(Console.WriteLine));
+
+builder.Services.AddHttpClient();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

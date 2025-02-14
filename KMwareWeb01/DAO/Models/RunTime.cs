@@ -3,7 +3,7 @@
 namespace KMwareWeb01.DAO.Models
 {
     [Index(nameof(Id), IsUnique = true)]
-    public class RunTimes
+    public class RunTime
     {
         public int Id { get; set; }
         public int V0 { get; set; }

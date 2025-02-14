@@ -38,7 +38,8 @@
 <div class="text-cetner">
 	<form method="post">
 		<button type="submit" asp-page-handler="RedirectToIndex">Redirect to Index</button>
-	</form>
+        <button type="submit" asp-page-handler="GarageDoor">Garage Door</button>
+    </form>
 </div>
 <div class="text-center">
     <h1 class="display-4">KMware</h1>
@@ -47,21 +48,29 @@
     @* @Html.TextBoxFor(m => m.RunTimes[0].V0) *@
 
     <form method="post">
-        <div>
-            @for (int rt = 0; rt < Model.RunTimes.Count(); rt++)
-			{
-                <input type="number" asp-for="RunTimes[@rt].V1" name="RunTimes[@rt][V1]" value="@Model.RunTimes[@rt].V1" min="0" max="99" style="width: 5em">
-                <input type="number" asp-for="RunTimes[@rt].V2" name="RunTimes[@rt][V2]" value="@Model.RunTimes[@rt].V2" min="0" max="99" style="width: 5em">
-                <input type="number" asp-for="RunTimes[@rt].V3" name="RunTimes[@rt][V3]" value="@Model.RunTimes[@rt].V3" min="0" max="99" style="width: 5em">
-                <input type="number" asp-for="RunTimes[@rt].V4" name="RunTimes[@rt][V4]" value="@Model.RunTimes[@rt].V4" min="0" max="99" style="width: 5em">
-                <input type="number" asp-for="RunTimes[@rt].v5" name="RunTimes[@rt][V5]" value="@Model.RunTimes[@rt].V5" min="0" max="99" style="width: 5em">
-                <input type="number" asp-for="RunTimes[@rt].v6" name="RunTimes[@rt][V6]" value="@Model.RunTimes[@rt].V6" min="0" max="99" style="width: 5em">
-                <input type="number" asp-for="RunTimes[@rt].v7" name="RunTimes[@rt][V7]" value="@Model.RunTimes[@rt].V7" min="0" max="99" style="width: 5em">
-                <br />
-			}
+        <div style="display: flex; justify-content: center;">
+            <div>
+                @for (int rt = 0; rt < Model.RunTimes.Count() - 1; rt++)
+                {
+                    <div style="display: flex; align-items: center; margin-bottom: 0.5em;">
+                        <label style="width: 5em; text-align: right; margin-right: 1em;">
+                            @* @Model.DayOfWeek[rt]: *@
+                        </label>
+                        <input type="number" asp-for="RunTimes[@rt].V1" name="RunTimes[@rt][V1]" value="@Model.RunTimes[@rt].V1" min="0" max="99" style="width: 5em">
+                        <input type="number" asp-for="RunTimes[@rt].V2" name="RunTimes[@rt][V2]" value="@Model.RunTimes[@rt].V2" min="0" max="99" style="width: 5em">
+                        <input type="number" asp-for="RunTimes[@rt].V3" name="RunTimes[@rt][V3]" value="@Model.RunTimes[@rt].V3" min="0" max="99" style="width: 5em">
+                        <input type="number" asp-for="RunTimes[@rt].V4" name="RunTimes[@rt][V4]" value="@Model.RunTimes[@rt].V4" min="0" max="99" style="width: 5em">
+                        <input type="number" asp-for="RunTimes[@rt].v5" name="RunTimes[@rt][V5]" value="@Model.RunTimes[@rt].V5" min="0" max="99" style="width: 5em">
+                        <input type="number" asp-for="RunTimes[@rt].v6" name="RunTimes[@rt][V6]" value="@Model.RunTimes[@rt].V6" min="0" max="99" style="width: 5em">
+                        <input type="number" asp-for="RunTimes[@rt].v7" name="RunTimes[@rt][V7]" value="@Model.RunTimes[@rt].V7" min="0" max="99" style="width: 5em">
+                        <br />
+                    </div>
+			    }
+            </div>
         </div>
         <br />
-        <button type="submit" class="btn btn-default" asp-page-handler="Update">Click to post</button>
+        <button type="submit" asp-page-handler="Update">Click to post</button>
+        <button type="submit" asp-page-handler="DelayWater">24 Hour Delay</button>
     </form>
 
     <form method="post">
